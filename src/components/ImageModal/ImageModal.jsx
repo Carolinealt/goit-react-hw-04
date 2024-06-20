@@ -8,7 +8,7 @@ const ImageModal = ({
   isOpen,
   toClose,
   handleAfterOpenFunc,
-  imageToShow,
+  imageToShow: { src, alt },
 }) => {
   return (
     <>
@@ -19,7 +19,7 @@ const ImageModal = ({
         style={customStyle}
         onAfterOpen={handleAfterOpenFunc}
       >
-        {/* <img src="" alt="" srcset="" /> */}
+        <img src={src} alt={alt} />
         <button onClick={toClose}>close</button>
       </Modal>
     </>

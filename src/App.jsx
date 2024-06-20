@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import toast, { Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
@@ -17,6 +17,14 @@ function App() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const ctxData = useContext(imageContext);
+
+  useEffect(() => {
+    setCurrentImage(ctxData.imgData);
+    handleOpenModal();
+  }, [ctxData.imgData]);
+
   const handleBtnLoadMore = () => {
     setPage(page + 1);
   };
@@ -52,15 +60,10 @@ function App() {
 
   const handleOpenModal = () => {
     setModalIsOpen(true);
-    console.log("fine");
   };
 
   const handleCloseModal = () => {
     setModalIsOpen(false);
-  };
-
-  const handleAfterOpenFunc = () => {
-    console.log("its ok");
   };
 
   return (
@@ -73,13 +76,14 @@ function App() {
       )}
       {isLoasding && <Loader />}
       <Toaster />
-      <ImageModal
-        toOpen={handleOpenModal}
-        isOpen={modalIsOpen}
-        toClose={handleCloseModal}
-        handleAfterOpenFunc={handleAfterOpenFunc}
-        imageToShow={currentImage}
-      />
+      {currentImage.src && (
+        <ImageModal
+          toOpen={handleOpenModal}
+          isOpen={modalIsOpen}
+          toClose={handleCloseModal}
+          imageToShow={currentImage}
+        />
+      )}
     </>
   );
 }

@@ -1,26 +1,22 @@
-import { useContext, useEffect, useRef } from "react";
+import { useContext } from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import { imageContext } from "../Context";
+
 const ImageGallery = ({ images }) => {
-  const value = useContext(imageContext);
-  let clickedImg = {};
+  const { changeImgData } = useContext(imageContext);
 
-  useEffect(() => {
-    console.log("log after ue", value);
-  }, [value]);
+  const handle = (img) => {
+    const imgData = { src: img.urls.small, alt: img.alternative_slugs.en };
+    changeImgData(imgData);
 
-  const handle = (e) => {
-    e.preventDefault();
-    clickedImg = e.target;
-    value.changeImgData({ src: clickedImg.src, alt: clickedImg.alt });
-    console.log("log before ue", value);
   };
+
   return (
     <ul>
       {images.map((image) => {
         return (
           <li key={image.id}>
-            <a href="#" onClick={handle}>
+            <a href="#" onClick={() => handle(image)}>
               <ImageCard
                 src={image.urls.small}
                 alt={image.alternative_slugs.en}
