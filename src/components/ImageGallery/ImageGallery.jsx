@@ -1,21 +1,27 @@
 import { useContext } from "react";
 import ImageCard from "../ImageCard/ImageCard";
 import { imageContext } from "../Context";
+import css from "./ImageGallery.module.css";
 
 const ImageGallery = ({ images }) => {
   const { changeImgData } = useContext(imageContext);
 
   const handle = (img) => {
-    const imgData = { src: img.urls.small, alt: img.alternative_slugs.en };
+    const imgData = {
+      src: img.urls.full,
+      alt: img.alternative_slugs.en,
+      likes: img.likes,
+      location: img.user.location,
+      desc: img.alt_description,
+    };
     changeImgData(imgData);
-
   };
 
   return (
-    <ul>
+    <ul className={css.list}>
       {images.map((image) => {
         return (
-          <li key={image.id}>
+          <li key={image.id} className={css.listItem}>
             <a href="#" onClick={() => handle(image)}>
               <ImageCard
                 src={image.urls.small}

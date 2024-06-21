@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import toast, { Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
@@ -9,6 +9,7 @@ import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
 import { imageContext } from "./components/Context";
+
 function App() {
   const [imagesList, setImagesList] = useState([]);
   const [currentImage, setCurrentImage] = useState({});

@@ -1,0 +1,25 @@
+.header {
+    position: sticky;
+    top: 0;
+}
+
+.input {
+    padding: 13px 22px;
+    font-size: 25px;
+    margin: 5px;
+    border-radius: 30px;
+    background-color: #424242;
+}
+
+.searchBtn {
+    font-size: 25px;
+    border-radius: 30px;
+    background-color: #313131;
+    border: 4px solid #0e0d0d;
+    margin: 5px;
+}
+
+.form{
+
+
+}

@@ -1,3 +1,5 @@
+import css from "./SearchBar.module.css";
+
 const SearchBar = ({ func }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -5,16 +7,19 @@ const SearchBar = ({ func }) => {
   };
   return (
     <>
-      <header>
-        <form onSubmit={handleSubmit}>
+      <header className={css.header}>
+        <form onSubmit={handleSubmit} className={css.form}>
           <input
             type="text"
             autoComplete="off"
             autoFocus
             placeholder="Search images and photos"
             name="querry"
+            className={css.input}
           />
-          <button type="submit">Search</button>
+          <button className={css.searchBtn} type="submit">
+            Search
+          </button>
         </form>
       </header>
     </>
