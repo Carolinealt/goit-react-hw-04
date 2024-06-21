@@ -51,7 +51,7 @@ function App() {
 
   const handleQuerry = (newQuery) => {
     if (newQuery.trim() === "") {
-      toast("лох");
+      toast("enter valid value");
       return;
     }
     setQuery(newQuery);
