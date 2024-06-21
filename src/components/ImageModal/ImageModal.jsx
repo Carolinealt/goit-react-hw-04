@@ -18,11 +18,15 @@ const ImageModal = ({
         onAfterOpen={handleAfterOpenFunc}
       >
         <img className={css.fullImg} src={src} alt={alt} />
-        <div className={css.desc}><p className={css.par}>location - {location}</p>
-        <p className={css.par}>description - {desc}</p>
-        <p className={css.par}>likes - {likes}</p></div>
-        
-        <button onClick={toClose} className={css.closeBtn}>x</button>
+        <div className={css.desc}>
+          <p className={css.par}>location - {location}</p>
+          <p className={css.par}>description - {desc}</p>
+          <p className={css.par}>likes - {likes}</p>
+        </div>
+
+        <button onClick={toClose} className={css.closeBtn}>
+          x
+        </button>
       </Modal>
     </>
   );

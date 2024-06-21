@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import toast, { Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
