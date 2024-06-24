@@ -1,5 +1,5 @@
 import "./App.css";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import SearchBar from "./components/SearchBar/SearchBar";
 import toast, { Toaster } from "react-hot-toast";
 import ImageGallery from "./components/ImageGallery/ImageGallery";
@@ -8,7 +8,6 @@ import Loader from "./components/Loader/Loader";
 import ErrorMessage from "./components/ErrorMessage/ErrorMessage";
 import LoadMoreBtn from "./components/LoadMoreBtn/LoadMoreBtn";
 import ImageModal from "./components/ImageModal/ImageModal";
-import { imageContext } from "./components/Context";
 
 function App() {
   const [imagesList, setImagesList] = useState([]);
@@ -18,13 +17,7 @@ function App() {
   const [page, setPage] = useState(1);
   const [query, setQuery] = useState("");
   const [modalIsOpen, setModalIsOpen] = useState(false);
-
-  const ctxData = useContext(imageContext);
-
-  useEffect(() => {
-    setCurrentImage(ctxData.imgData);
-    handleOpenModal();
-  }, [ctxData.imgData]);
+  const [imgData, setImgData] = useState({});
 
   const handleBtnLoadMore = () => {
     setPage(page + 1);
@@ -45,18 +38,13 @@ function App() {
         setIsLoading(false);
       }
     };
-
-    query && fetchImg();
-  }, [page, query]);
+    fetchImg();
+  }, [page, query, setIsLoading, setError]);
 
   const handleQuerry = (newQuery) => {
-    if (newQuery.trim() === "") {
-      toast("enter valid value");
-      return;
-    }
+    setImagesList([]);
     setQuery(newQuery);
     setPage(1);
-    setImagesList([]);
   };
 
   const handleOpenModal = () => {
@@ -71,7 +59,14 @@ function App() {
     <>
       <SearchBar func={handleQuerry} />
       {error && <ErrorMessage />}
-      {imagesList.length > 0 && <ImageGallery images={imagesList} />}
+      {imagesList.length > 0 && (
+        <ImageGallery
+          images={imagesList}
+          setImgData={setImgData}
+          setCurrentImage={setCurrentImage}
+          handleOpenModal={handleOpenModal}
+        />
+      )}
       {imagesList.length > 0 && (
         <LoadMoreBtn handleBtnLoadMore={handleBtnLoadMore} />
       )}

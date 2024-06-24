@@ -1,8 +1,13 @@
+import toast from "react-hot-toast";
 import css from "./SearchBar.module.css";
 
 const SearchBar = ({ func }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (e.target.elements.querry.value.trim() === "") {
+      toast("enter valid value");
+      return;
+    }
     func(e.target.elements.querry.value.trim());
   };
   return (
