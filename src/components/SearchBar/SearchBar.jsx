@@ -8,7 +8,8 @@ const SearchBar = ({ func }) => {
       toast("enter valid value");
       return;
     }
-    func(e.target.elements.querry.value.trim());
+    const query = e.target.elements.querry.value.trim();
+    func(query);
   };
   return (
     <>
