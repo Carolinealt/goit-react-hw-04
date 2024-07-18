@@ -29,7 +29,7 @@ function App() {
         setError(false);
         setIsLoading(true);
         const data = await getImages(query, page);
-        setImagesList((prevAr) => [...prevAr, ...data]);
+        setImagesList((prevAr) => page > 1 ? [...prevAr, ...data] : [...data])
       } catch (error) {
         setIsLoading(false);
         setError(true);
